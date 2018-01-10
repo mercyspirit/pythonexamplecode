@@ -1,0 +1,32 @@
+s = 'This is a global variable'
+
+def func():
+	l = 'This is a local variable'
+	print(locals())
+
+def hello(name = 'Jose'):
+	return "Hello " + name
+
+greet = hello
+
+print(greet("Joaquin"))
+
+def other(func):
+		print("Other func")
+		print(func())
+
+other(hello)
+
+def new_dec(func):
+		def wrap_func():
+				print("Code here, befroe func")
+				func()
+				print("Code here, after func")
+		return wrap_func
+
+def need_deco():
+		print("This needs a decorator")
+
+need_deco = new_dec(need_deco)
+
+need_deco()
